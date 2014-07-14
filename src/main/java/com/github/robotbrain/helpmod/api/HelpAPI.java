@@ -1,5 +1,6 @@
 package com.github.robotbrain.helpmod.api;
 
+import com.github.robotbrain.helpmod.HelpMod;
 import com.github.robotbrain.helpmod.content.entry.EntryMod;
 import com.github.robotbrain.helpmod.content.entry.EntryModVanilla;
 import com.google.common.base.Throwables;
@@ -31,6 +32,11 @@ public class HelpAPI {
             Entity e = (Entity) thing;
             return entryMod.addEntity((Class<? super Entity>) e.getClass(), pages);
         }
+        if (thing instanceof Class<?>) {
+            if (Entity.class.isAssignableFrom((Class<?>) thing)) {
+                return entryMod.addEntity((Class<? super Entity>) thing, pages);
+            }
+        }
         throw Throwables.propagate(new Exception("Invalid thing to be registered!"));
     }
 
@@ -43,6 +49,7 @@ public class HelpAPI {
                 return (EntryMod) modEntries.get(modid);
             }
             EntryMod modEntry = new EntryMod(modid);
+            modEntry.parent = HelpMod.PROXY.getRoot();
             modEntries.put(modid, modEntry);
             return modEntry;
         }

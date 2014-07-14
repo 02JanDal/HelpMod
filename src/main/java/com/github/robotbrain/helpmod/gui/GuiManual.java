@@ -16,7 +16,6 @@ import org.lwjgl.opengl.GL11;
 
 public class GuiManual extends GuiScreen {
 
-    public static GuiManual currentOpenBook = new GuiManual();
     public static ResourceLocation texture = new ResourceLocation(Reference.TEXTURES.GUI_MANUAL);
     public int left;
     public int top;
@@ -47,7 +46,9 @@ public class GuiManual extends GuiScreen {
         buttonList.add(leftButton = new GuiButtonPage(1, left, top + guiHeight - 10, false));
         buttonList.add(rightButton = new GuiButtonPage(2, left + guiWidth - 18, top + guiHeight - 10, true));
 
-        updatePageButtons();
+        leftButton.enabled = pageIndex != 0;
+        rightButton.enabled = pageIndex + 1 < entry().getPages().length;
+        backButton.enabled = !entry().isRoot();
     }
 
     String getTitle() {
@@ -62,7 +63,7 @@ public class GuiManual extends GuiScreen {
     }
 
     String getSubtitle() {
-        return null;
+        return entry().getTitle();
     }
 
     @Override
@@ -105,7 +106,7 @@ public class GuiManual extends GuiScreen {
         for (int i = 0; i < l + 6; i++)
             drawTexturedModalRect(x - l / 2 - 3 + i, y - 1, 60, 180, 1, 11);
 
-        fontRendererObj.drawString(getTitle(), x - l / 2 + fontOff, y, 0x111111, false);
+        fontRendererObj.drawString(getTitle(), x - l / 2 + fontOff, y, 0xffffff, false);
         fontRendererObj.setUnicodeFlag(unicode);
     }
 
@@ -127,37 +128,26 @@ public class GuiManual extends GuiScreen {
 
     @Override
     protected void actionPerformed(GuiButton button) {
-        int buttons = buttonList.size() - 3;
-        if (button.id >= buttons) {
-            switch (button.id - buttons) {
-                case 0:
-                    if (GuiScreen.isShiftKeyDown()) {
-                        HelpMod.PROXY.setEntryToOpen(null);
-                    } else {
-                        HelpMod.PROXY.setEntryToOpen(entry().parent);
-                    }
-                    break;
-                case 1:
-                    pageIndex--;
-                    break;
-                case 2:
-                    pageIndex++;
-                    break;
+        if (button == backButton) {
+            if (GuiScreen.isShiftKeyDown()) {
+                openEntry(null);
+            } else {
+                openEntry(entry().parent);
             }
-            updatePageButtons();
+        } else if (button == leftButton && leftButton.enabled) {
+            pageIndex--;
+            mc.displayGuiScreen(new GuiManual());
+        } else if (button == rightButton && rightButton.enabled) {
+            pageIndex++;
+            mc.displayGuiScreen(new GuiManual());
+        } else {
+            page.action(this, button);
         }
-        page.action(this, button);
-    }
-
-    public void updatePageButtons() {
-        leftButton.enabled = pageIndex != 0;
-        rightButton.enabled = pageIndex + 1 < entry().getPages().length;
-        backButton.visible = backButton.enabled = !entry().isRoot();
     }
 
     public void openEntry(HelpEntry page) {
         HelpMod.PROXY.setEntryToOpen(page);
-        mc.displayGuiScreen(currentOpenBook = new GuiManual());
+        mc.displayGuiScreen(new GuiManual());
     }
 
     @Override

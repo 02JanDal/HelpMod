@@ -25,7 +25,7 @@ public class GuiButtonBackWithShift extends GuiButtonBack {
 
     @Override
     public List<String> getTooltip() {
-        return Arrays.asList(StatCollector.translateToLocal("botaniamisc.back"), EnumChatFormatting.GRAY + StatCollector.translateToLocal("botaniamisc.clickToIndex"));
+        return Arrays.asList(StatCollector.translateToLocal("gnuman.back"), EnumChatFormatting.GRAY + StatCollector.translateToLocal("gnuman.clickToIndex"));
     }
 
 }

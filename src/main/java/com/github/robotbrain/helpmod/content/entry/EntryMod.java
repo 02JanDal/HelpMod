@@ -80,10 +80,10 @@ public class EntryMod extends EntryTOC {
     }
 
     public HelpEntry addCustomEntry(HelpEntry entry) {
+        entry.parent = this;
         synchronized (entries) {
             entries.add(entry);
         }
-        entry.parent = this;
         return entry;
     }
 }

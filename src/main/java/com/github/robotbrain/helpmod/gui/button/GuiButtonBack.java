@@ -29,6 +29,10 @@ public class GuiButtonBack extends GuiButton {
 
     @Override
     public void drawButton(Minecraft par1Minecraft, int par2, int par3) {
+        if (!enabled) {
+            return;
+        }
+
         field_146123_n = par2 >= xPosition && par3 >= yPosition && par2 < xPosition + width && par3 < yPosition + height;
         int k = getHoverState(field_146123_n);
 
@@ -43,7 +47,7 @@ public class GuiButtonBack extends GuiButton {
     }
 
     public List<String> getTooltip() {
-        return Arrays.asList(StatCollector.translateToLocal("botaniamisc.back"));
+        return Arrays.asList(StatCollector.translateToLocal("gnuman.back"));
     }
 
 }

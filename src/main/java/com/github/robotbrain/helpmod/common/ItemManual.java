@@ -23,6 +23,7 @@ public class ItemManual extends Item {
         setMaxStackSize(1);
         setUnlocalizedName(Reference.ITEMS.MANUAL);
         setCreativeTab(CreativeTabs.tabMisc);
+        iconString = Reference.MODID + ":" + Reference.ITEMS.MANUAL;
     }
 
     @Override

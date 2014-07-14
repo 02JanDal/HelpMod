@@ -31,6 +31,6 @@ public class EntryEntity extends HelpEntry {
 
     @Override
     public HelpPage[] getPages() {
-        return new HelpPage[0];
+        return pages.toArray(new HelpPage[pages.size()]);
     }
 }

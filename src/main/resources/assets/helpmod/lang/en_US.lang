@@ -3,3 +3,5 @@ item.gnuman.name=GNU Man: Portable Edition
 gnuman.toc=Table of Contents
 gnuman.nextpage=Next Page
 gnuman.prevpage=Prev Page
+gnuman.back=Back
+gnuman.clickToIndex=Click to go to the Index

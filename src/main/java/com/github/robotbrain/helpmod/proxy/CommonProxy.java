@@ -26,12 +26,11 @@ public class CommonProxy implements IGuiHandler {
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         switch (ID) {
             case Reference.GUIS.MANUAL:
-                GuiManual book = GuiManual.currentOpenBook;
                 ItemStack stack = player.getCurrentEquippedItem();
                 if (stack == null || !(stack.getItem() instanceof ItemManual)) {
                     return null;
                 }
-                return book;
+                return new GuiManual();
         }
 
         return null;
@@ -68,6 +67,10 @@ public class CommonProxy implements IGuiHandler {
     }
 
     public void registerHelpModHelp() {
-        HelpAPI.addCustomEntry(Reference.MODID, "Gnu Man, Portable Edition", new BlankPage());
+        HelpAPI.registerHelpPageFor(Reference.ITEMS.MANUAL_ITEM, Reference.MODID, new BlankPage());
+    }
+
+    public HelpEntry getRoot() {
+        return entryRoot;
     }
 }

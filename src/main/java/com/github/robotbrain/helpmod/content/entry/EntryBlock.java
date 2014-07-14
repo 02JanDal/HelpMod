@@ -25,7 +25,7 @@ public class EntryBlock extends HelpEntry {
 
     @Override
     public String getTitle() {
-        return StatCollector.translateToLocal(block.getUnlocalizedName());
+        return StatCollector.translateToLocal(block.getUnlocalizedName() + ".name");
     }
 
     @Override

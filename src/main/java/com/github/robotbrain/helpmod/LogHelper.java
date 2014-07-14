@@ -29,4 +29,8 @@ public class LogHelper {
     public static void e(String m, Throwable t, Object... o) {
         logger().error(getFormat(m, o), t);
     }
+
+    public static void d(String m, Object... o) {
+        i(m, o);
+    }
 }

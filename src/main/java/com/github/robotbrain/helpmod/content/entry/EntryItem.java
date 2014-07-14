@@ -25,7 +25,7 @@ public class EntryItem extends HelpEntry {
 
     @Override
     public String getTitle() {
-        return StatCollector.translateToLocal(item.getUnlocalizedName());
+        return StatCollector.translateToLocal(item.getUnlocalizedName() + ".name");
     }
 
     @Override
