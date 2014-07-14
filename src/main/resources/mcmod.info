@@ -1,0 +1,16 @@
+[
+{
+  "modid": "helpmod",
+  "name": "Ingame Help Mod",
+  "description": "Adds ingame help",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["robotbrain"],
+  "credits": "02JanDal for the idea",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
