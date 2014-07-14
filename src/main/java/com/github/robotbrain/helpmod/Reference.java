@@ -9,12 +9,12 @@ public class Reference {
 
     public static class GUIS {
         public static final int MANUAL = 0;
+        public static final String GUI_MANUAL = TEXTURES.GUI_PREFIX + "gnuman.png";
     }
 
     public static class TEXTURES {
 
-        public static final String GUI_MANUAL = PREFIX_GUI + "gnuman.png";
-        public static final String PREFIX_GUI = MODID + ":textures/gui/";
+        public static final String GUI_PREFIX = MODID + ":textures/gui/";
 
     }
 

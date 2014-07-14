@@ -16,7 +16,7 @@ import org.lwjgl.opengl.GL11;
 
 public class GuiManual extends GuiScreen {
 
-    public static ResourceLocation texture = new ResourceLocation(Reference.TEXTURES.GUI_MANUAL);
+    public static ResourceLocation texture = new ResourceLocation(Reference.GUIS.GUI_MANUAL);
     public int left;
     public int top;
     int guiWidth = 146;
